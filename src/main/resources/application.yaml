@@ -1,2 +1,14 @@
 server:
   port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: context-auth-login
+          uri: ${CONTEXT_AUTH_HOST:http://localhost:8081}
+          predicates:
+            - Path=/login
+            - Method=POST
+          filters:
+            - RewritePath=/login,/api/frontend/v1/auth/login
