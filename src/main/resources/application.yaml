@@ -11,4 +11,11 @@ spring:
             - Path=/login
             - Method=POST
           filters:
-            - RewritePath=/login,/api/frontend/v1/auth/login
+            - RewritePath=/login, /api/frontend/v1/auth/login
+        - id: context-auth-users
+          uri: ${CONTEXT_AUTH_HOST:http://localhost:8081}
+          predicates:
+            - Path=/users/**
+            - Header=app-context-token
+          filters:
+            - RewritePath=/users(?<segment>/?.*), /api/frontend/v1/users$\{segment}
