@@ -19,3 +19,10 @@ spring:
             - Header=app-context-token
           filters:
             - RewritePath=/users(?<segment>/?.*), /api/frontend/v1/users$\{segment}
+        - id: posts
+          uri: ${POSTS_HOST:http://localhost:8082}
+          predicates:
+            - Path=/posts/**
+            - Header=app-context-token
+          filters:
+            - RewritePath=/posts(?<segment>/?.*), /api/frontend/v1/posts\{segment}
