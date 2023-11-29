@@ -25,4 +25,4 @@ spring:
             - Path=/posts/**
             - Header=app-context-token
           filters:
-            - RewritePath=/posts(?<segment>/?.*), /api/frontend/v1/posts\{segment}
+            - RewritePath=/posts(?<segment>/?.*), /api/frontend/v1/posts$\{segment}
