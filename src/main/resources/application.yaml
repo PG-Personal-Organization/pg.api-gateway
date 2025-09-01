@@ -11,8 +11,22 @@ management:
       show-details: always
 
 spring:
+  codec:
+    max-in-memory-size: 50MB
   cloud:
     gateway:
+      httpserver:
+        request:
+          max-initial-line-length: 16KB
+          max-header-size: 16KB
+          max-chunk-size: 50MB
+      httpclient:
+        wiretap: false
+        max-initial-line-length: 16KB
+        max-header-size: 16KB
+        response-timeout: 30s
+        # this is the one you're after
+        max-in-memory-size: 52428800   # 50MB in bytes
       routes:
         - id: context-auth-login
           uri: ${CONTEXT_AUTH_HOST:http://localhost:8081}
