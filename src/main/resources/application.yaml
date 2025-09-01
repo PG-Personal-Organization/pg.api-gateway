@@ -27,18 +27,18 @@ spring:
             - Path=/users/**
             - Header=app-context-token
           filters:
-            - RewritePath=/users(?<segment>/?.*), /api/frontend/v1/users$\{segment}
+            - RewritePath=/users(?<segment>/?.*), /api/frontend/v1/users${segment}
         - id: payments-upload
           uri: ${PAYMENTS_HOST:http://localhost:8082}
           predicates:
             - Path=/payments/upload/**
             - Header=app-context-token
           filters:
-            - RewritePath=/payments/upload(?<segment>/?.*), /api/v1/files/rest/upload\{segment}
+            - RewritePath=/payments/upload(?<segment>/?.*), /api/v1/files/rest/upload${segment}
         - id: payments-imports
           uri: ${PAYMENTS_HOST:http://localhost:8082}
           predicates:
             - Path=/payments/import/**
             - Header=app-context-token
           filters:
-            - RewritePath=/payments/import(?<segment>/?.*), /api/v1/imports\{segment}
+            - RewritePath=/payments/import(?<segment>/?.*), /api/v1/imports${segment}
