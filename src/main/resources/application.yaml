@@ -5,10 +5,13 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,prometheus
   endpoint:
     health:
       show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 logging:
   level:
@@ -19,6 +22,8 @@ logging:
     name: logs/api-gateway-app.log
 
 spring:
+  application:
+    name: api-gateway-microservice
   codec:
     max-in-memory-size: 50MB
   cloud:
