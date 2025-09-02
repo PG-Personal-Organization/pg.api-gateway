@@ -10,6 +10,14 @@ management:
     health:
       show-details: always
 
+logging:
+  level:
+    root: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{app-trace-id}] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/api-gateway-app.log
+
 spring:
   codec:
     max-in-memory-size: 50MB
